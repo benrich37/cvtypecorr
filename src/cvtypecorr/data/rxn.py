@@ -113,28 +113,3 @@ class FormationReaction(ThermoReaction):
                 reactants.append((ref_specie.name, ref_coeff))
                 finished = formula_dict_is_formula(get_cur_reactants_formula_dict(reactants), formula)
         super().__init__(name, reactants, products, delta_g)
-
-
-    
-
-
-test = FormationReaction("C2H3OH", [("C", 2), ("O", 1), ("H", 5)], -10.0)
-print("name", test.name)
-print("reactants", test.reactants)
-print("products", test.products)
-print(test.delta_g)
-print(test.el_by_priority)
-
-# test = FormationReaction("C2H3OH", [("C", 2), ("O", 1), ("H", 5)], -10.0, el_by_priority=["O"])
-
-# redox_reactions = {
-#     # "no3h_to_no_redox": RedoxReaction(
-#     #     "no3h_to_no_redox",
-#     #     ["NO3H"],
-#     #     ["NO"],
-#     # )
-# }
-
-# thermo_reactions = {
-
-# }
