@@ -1,32 +1,59 @@
-from pymatgen.core.structure import Element
+from pymatgen.core.structure import Element, Composition
 
 
 class Reaction:
     def __init__(self, name, reactants, products):
         self.name = name
+        charge_balance = get_charge_balance(reactants, products)
+        if charge_balance != 0:
+            raise ValueError(f"Reaction is not charge balanced. Charge balance: {charge_balance}")
+        atom_balances = get_atom_balances(reactants, products)
+        if not all(balance == 0 for balance in atom_balances.values()):
+            imbalanced_els = {el: balance for el, balance in atom_balances.items() if balance != 0}
+            raise ValueError(f"Reaction is not atom balanced. Imbalanced elements: {imbalanced_els}")
         self.reactants = reactants
         self.products = products
 
-def get_specie_charge(specie_name):
+def get_name_and_charge(specie_name):
     if "-" in specie_name:
         name, charge = specie_name.split("-")
-        return -int(charge)
-    elif "n" in specie_name:
-        name, charge = specie_name.split("n")
-        return -int(charge)
-    elif "p" in specie_name:
-        name, charge = specie_name.split("p")
-        return int(charge)
+        charge = -1 if not len(charge) else -int(charge)
     elif "+" in specie_name:
         name, charge = specie_name.split("+")
-        return int(charge)
+        charge = 1 if not len(charge) else int(charge)
     else:
-        return 0
+        name = specie_name
+        charge = 0
+    return name, charge
+
+def get_specie_charge(specie_name):
+    return get_name_and_charge(specie_name)[1]
+
+def get_specie_name(specie_name):
+    return get_name_and_charge(specie_name)[0]
 
 def get_charge_balance(reactants, products):
     reactant_charge = sum(get_specie_charge(specie_name) * coeff for specie_name, coeff in reactants)
     product_charge = sum(get_specie_charge(specie_name) * coeff for specie_name, coeff in products)
     return reactant_charge - product_charge
+
+def get_atom_balances(reactants, products):
+    reactant_compositions = [Composition(get_specie_name(specie_name)).as_dict() for specie_name, coeff in reactants]
+    product_compositions = [Composition(get_specie_name(specie_name)).as_dict() for specie_name, coeff in products]
+    # all_els = set(list(rc.keys()) for rc in reactant_compositions) | set(list(pc.keys()) for pc in product_compositions)
+    all_els = set()
+    for compset in [reactant_compositions, product_compositions]:
+        for rc in compset:
+            all_els |= set(list(rc.keys()))
+    # atom_balances = {el: sum(rc.as_dict().get(el, 0) for rc in reactant_compositions) - sum(pc.as_dict().get(el, 0) for pc in product_compositions) for el in all_els}
+    atom_balances = {el: 0 for el in all_els}
+    for i, pdt_comp_dict in enumerate(product_compositions):
+        for el, coeff in pdt_comp_dict.items():
+            atom_balances[el] += coeff * products[i][1]
+    for i, rct_comp_dict in enumerate(reactant_compositions):
+        for el, coeff in rct_comp_dict.items():
+            atom_balances[el] -= coeff * reactants[i][1]
+    return atom_balances
 
 def get_num_electrons(reactants, products):
     charge_balance = get_charge_balance(reactants, products)
@@ -44,7 +71,10 @@ class ThermoReaction(Reaction):
         self.delta_g = delta_g
 
 class ReferenceSpecie:
-    def __init__(self, rep_el, name, formula: list[tuple[str, int | float]]):
+    def __init__(self, rep_el, name, formula: list[tuple[str, int | float]] | None = None):
+        if formula is None:
+            formula_dict = Composition(name).as_dict()
+            formula = [(el, coeff) for el, coeff in formula_dict.items()]
         assert rep_el in [p[0] for p in formula], "Representative element must be in the formula"
         self.rep_el = rep_el
         self.name = name
@@ -52,13 +82,14 @@ class ReferenceSpecie:
         self.depends_on = {p[0]: p[1] for p in formula if p[0] != rep_el}
 
 reference_species = {
-    "O": ReferenceSpecie("O", "H2O", [("H", 2), ("O", 1)]),
-    "H": ReferenceSpecie("H", "H2", [("H", 2)]),
-    "N": ReferenceSpecie("N", "NH3", [("N", 1), ("H", 3)]),
-    "C": ReferenceSpecie("C", "CH4", [("C", 1), ("H", 4)]),
+    "O": ReferenceSpecie("O", "H2O"),
+    "H": ReferenceSpecie("H", "H2"),
+    "N": ReferenceSpecie("N", "NH3"),
+    "C": ReferenceSpecie("C", "CH4"),
 }
 
 def get_cur_reactants_formula_dict(reactants: list[tuple[str, int | float]]):
+    # reactants must be a list of species in reference_species
     formula = {}
     for specie_name, coeff in reactants:
         ref_specie = [p for p in reference_species.values() if p.name == specie_name]
