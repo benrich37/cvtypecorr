@@ -1,9 +1,23 @@
 from pymatgen.core.structure import Element, Composition
 
 
+def resolve_specie_set(specie_set: list[str | tuple[str, int]]):
+    resolved_specie_set = []
+    for specie in specie_set:
+        if isinstance(specie, str):
+            resolved_specie_set.append((specie, 1))
+        elif isinstance(specie, list) or isinstance(specie, tuple):
+            if len(specie) == 1:
+                resolved_specie_set.append((specie[0], 1))
+            else:
+                resolved_specie_set.append(tuple(specie))
+    return resolved_specie_set
+
 class Reaction:
-    def __init__(self, name, reactants, products):
+    def __init__(self, name, reactants, products, delta_E):
         self.name = name
+        reactants = resolve_specie_set(reactants)
+        products = resolve_specie_set(products)
         charge_balance = get_charge_balance(reactants, products)
         if charge_balance != 0:
             raise ValueError(f"Reaction is not charge balanced. Charge balance: {charge_balance}")
@@ -13,6 +27,7 @@ class Reaction:
             raise ValueError(f"Reaction is not atom balanced. Imbalanced elements: {imbalanced_els}")
         self.reactants = reactants
         self.products = products
+        self.delta_E = delta_E
 
 def get_name_and_charge(specie_name):
     if "-" in specie_name:
