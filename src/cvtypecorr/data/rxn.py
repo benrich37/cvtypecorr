@@ -1,6 +1,6 @@
 from pymatgen.core.structure import Element, Composition
 
-
+v0_SHE_CANDLE = 4.66
 def resolve_specie_set(specie_set: list[str | tuple[str, int]]):
     resolved_specie_set = []
     for specie in specie_set:
@@ -52,9 +52,19 @@ def get_charge_balance(reactants, products):
     product_charge = sum(get_specie_charge(specie_name) * coeff for specie_name, coeff in products)
     return reactant_charge - product_charge
 
+def remove_atomless_species(resolved_specie_set):
+    exclude_species = ["e-"]
+    cleaned_specie_set = []
+    for specie_name, coeff in resolved_specie_set:
+        if specie_name not in exclude_species:
+            cleaned_specie_set.append((specie_name, coeff))
+    return cleaned_specie_set
+
 def get_atom_balances(reactants, products):
-    reactant_compositions = [Composition(get_specie_name(specie_name)).as_dict() for specie_name, coeff in reactants]
-    product_compositions = [Composition(get_specie_name(specie_name)).as_dict() for specie_name, coeff in products]
+    creactants = remove_atomless_species(reactants)
+    cproducts = remove_atomless_species(products)
+    reactant_compositions = [Composition(get_specie_name(specie_name)).as_dict() for specie_name, coeff in creactants]
+    product_compositions = [Composition(get_specie_name(specie_name)).as_dict() for specie_name, coeff in cproducts]
     # all_els = set(list(rc.keys()) for rc in reactant_compositions) | set(list(pc.keys()) for pc in product_compositions)
     all_els = set()
     for compset in [reactant_compositions, product_compositions]:
@@ -64,25 +74,26 @@ def get_atom_balances(reactants, products):
     atom_balances = {el: 0 for el in all_els}
     for i, pdt_comp_dict in enumerate(product_compositions):
         for el, coeff in pdt_comp_dict.items():
-            atom_balances[el] += coeff * products[i][1]
+            atom_balances[el] += coeff * cproducts[i][1]
     for i, rct_comp_dict in enumerate(reactant_compositions):
         for el, coeff in rct_comp_dict.items():
-            atom_balances[el] -= coeff * reactants[i][1]
+            atom_balances[el] -= coeff * creactants[i][1]
     return atom_balances
 
 def get_num_electrons(reactants, products):
-    charge_balance = get_charge_balance(reactants, products)
-    return -charge_balance
+    n_elec_reactants = sum(get_specie_charge(specie_name) * coeff for specie_name, coeff in reactants if specie_name == "e-")
+    n_elec_products = sum(get_specie_charge(specie_name) * coeff for specie_name, coeff in products if specie_name == "e-")
+    return n_elec_reactants - n_elec_products
 
 class RedoxReaction(Reaction):
     def __init__(self, name, reactants, products, equilibrium_potential):
-        super().__init__(name, reactants, products)
-        self.electrons = get_num_electrons(reactants, products)
+        super().__init__(name, reactants, products, 0.0)
+        self.electrons = get_num_electrons(self.reactants, self.products)
         self.equilibrium_potential = equilibrium_potential
 
 class ThermoReaction(Reaction):
     def __init__(self, name, reactants, products, delta_g):
-        super().__init__(name, reactants, products)
+        super().__init__(name, reactants, products, delta_g)
         self.delta_g = delta_g
 
 class ReferenceSpecie:
@@ -159,3 +170,22 @@ class FormationReaction(ThermoReaction):
                 reactants.append((ref_specie.name, ref_coeff))
                 finished = formula_dict_is_formula(get_cur_reactants_formula_dict(reactants), formula)
         super().__init__(name, reactants, products, delta_g)
+
+
+def mu_to_voltage(mu, v0=v0_SHE_CANDLE):
+    voltage = (- mu) - v0
+    return voltage
+
+def voltage_to_mu(voltage, v0=v0_SHE_CANDLE):
+    mu = - (voltage + v0)
+    return mu
+
+def eq_pot_to_electronless_reduction_energy(eq_pot, n_electrons, v0=v0_SHE_CANDLE):
+    mu = voltage_to_mu(eq_pot, v0)
+    electronless_reduction_energy = mu*n_electrons
+    return electronless_reduction_energy
+
+def electronless_reduction_energy_to_eq_pot(electronless_reduction_energy, n_electrons, v0=v0_SHE_CANDLE):
+    mu = electronless_reduction_energy/n_electrons
+    eq_pot = mu_to_voltage(mu, v0)
+    return eq_pot

@@ -6,14 +6,14 @@ def test_reaction():
     name = "Test Reaction"
     reactants = [("H2O", 3), ("CO2", 2)]
     products = [("C2H5OH", 1), ("O2", 3)]
-    test = Reaction(name, reactants, products)
+    test = Reaction(name, reactants, products, 0.0)
     assert test.name == name
     assert test.reactants == reactants
     assert test.products == products
     with pytest.raises(ValueError, match=f"Reaction is not atom balanced. Imbalanced elements: *"):
-        Reaction(name, reactants[:-1], products)
+        Reaction(name, reactants[:-1], products, 0.0)
     with pytest.raises(ValueError, match=f"Reaction is not charge balanced. Charge balance: {1}"):
-        Reaction(name, reactants, products + [("e-", 1)])
+        Reaction(name, reactants, products + [("e-", 1)], 0.0)
 
 
 @pytest.mark.parametrize("name, formula, delta_g, el_by_priority", [
