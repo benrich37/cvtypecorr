@@ -25,8 +25,9 @@ class Collection:
 
     def apply_redox_correction(self, rxn: RedoxReaction, dft_eq_pot: float):
         n_elec = rxn.electrons
-        target_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(rxn.equilibrium_potential, n_elec, self.v0)
-        rxn.delta_E = target_electronless_reduction_energy
-        dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, self.v0)
+        rxn.v0 = self.v0
+        # target_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(rxn.equilibrium_potential, n_elec, self.v0)
+        # rxn.delta_E = target_electronless_reduction_energy
+        dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, rxn.v0)
         self.corrections["e-"] = 0.0
         self.apply_correction(rxn, dft_electronless_reduction_energy)

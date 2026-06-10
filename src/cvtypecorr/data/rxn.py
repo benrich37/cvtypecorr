@@ -86,10 +86,27 @@ def get_num_electrons(reactants, products):
     return n_elec_reactants - n_elec_products
 
 class RedoxReaction(Reaction):
-    def __init__(self, name, reactants, products, equilibrium_potential):
+    def __init__(self, name, reactants, products, equilibrium_potential, v0: float | None = None):
+        if v0 is None:
+            v0 = v0_SHE_CANDLE
+        self._v0 = v0
         super().__init__(name, reactants, products, 0.0)
         self.electrons = get_num_electrons(self.reactants, self.products)
         self.equilibrium_potential = equilibrium_potential
+        self.delta_E = eq_pot_to_electronless_reduction_energy(self.equilibrium_potential, self.electrons, self.v0)
+
+    # @property
+    # def delta_E(self):
+    #     return eq_pot_to_electronless_reduction_energy(self.equilibrium_potential, self.electrons, self.v0)
+
+    @property
+    def v0(self):
+        return self._v0
+
+    @v0.setter
+    def v0(self, new_v0):
+        self._v0 = new_v0
+        self.delta_E = eq_pot_to_electronless_reduction_energy(self.equilibrium_potential, self.electrons, self._v0)
 
 class ThermoReaction(Reaction):
     def __init__(self, name, reactants, products, delta_g):
