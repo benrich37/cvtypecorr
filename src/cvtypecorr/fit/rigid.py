@@ -1,4 +1,10 @@
-from cvtypecorr.data.rxn import Reaction, RedoxReaction, ThermoReaction, v0_SHE_CANDLE, eq_pot_to_electronless_reduction_energy, electronless_reduction_energy_to_eq_pot
+from cvtypecorr.data.rxn import (
+    Reaction, RedoxReaction, ThermoReaction, 
+    v0_SHE_CANDLE, eq_pot_to_electronless_reduction_energy, 
+    electronless_reduction_energy_to_eq_pot, 
+    AcidDeprotReaction,
+    pka_to_delta_g,
+)
 
 # v0_SHE_CANDLE = 4.66
 
@@ -26,8 +32,15 @@ class Collection:
     def apply_redox_correction(self, rxn: RedoxReaction, dft_eq_pot: float):
         n_elec = rxn.electrons
         rxn.v0 = self.v0
-        # target_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(rxn.equilibrium_potential, n_elec, self.v0)
-        # rxn.delta_E = target_electronless_reduction_energy
         dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, rxn.v0)
         self.corrections["e-"] = 0.0
         self.apply_correction(rxn, dft_electronless_reduction_energy)
+
+    def apply_acid_correction(self, rxn: AcidDeprotReaction, dft_pka: float):
+        dft_delta_g = pka_to_delta_g(dft_pka, n_protons=1, T=rxn.T)
+        self.apply_correction(rxn, dft_delta_g)
+        # n_elec = rxn.electrons
+        # rxn.v0 = self.v0
+        # dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, rxn.v0)
+        # self.corrections["e-"] = 0.0
+        # self.apply_correction(rxn, dft_electronless_reduction_energy)

@@ -1,7 +1,16 @@
+import numpy as np
+from scipy import constants as const
+# from cvtypecorr.data.pka import data_dict
+k_ev = const.k / const.eV
+T_def = 298.15
 
+def pka_to_delta_g(pka, n_protons=1, T=T_def):
+    return k_ev * T * np.log(10) * pka * n_protons
 
-no3h = 0.0
-no2h = 0.0
-h3op = 0.0
-h2o = 0.0
-nh4p = 0.0
+data_dict = {
+    "NO3H": -1.3,
+    "NO2H": 3.29,
+    "H3O+": 0.0,
+    "H2O": 14.0,
+    "NH4+": 9.24,
+}

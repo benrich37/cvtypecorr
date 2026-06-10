@@ -95,10 +95,6 @@ class RedoxReaction(Reaction):
         self.equilibrium_potential = equilibrium_potential
         self.delta_E = eq_pot_to_electronless_reduction_energy(self.equilibrium_potential, self.electrons, self.v0)
 
-    # @property
-    # def delta_E(self):
-    #     return eq_pot_to_electronless_reduction_energy(self.equilibrium_potential, self.electrons, self.v0)
-
     @property
     def v0(self):
         return self._v0
@@ -107,6 +103,43 @@ class RedoxReaction(Reaction):
     def v0(self, new_v0):
         self._v0 = new_v0
         self.delta_E = eq_pot_to_electronless_reduction_energy(self.equilibrium_potential, self.electrons, self._v0)
+
+from cvtypecorr.data.pka import data_dict, pka_to_delta_g, T_def
+
+class AcidDeprotReaction(Reaction):
+    def __init__(self, name, acid, base, pKa, ref_acid_base_pair_and_pKa: tuple[str, str, float] | None = None, T: float | None = None):
+        if ref_acid_base_pair_and_pKa is None:
+            ref_acid_base_pair_and_pKa = ("H3O+", "H2O", data_dict["H3O+"])
+        if T is None:
+            T = T_def
+        self._T = T
+        reactants = [acid, ref_acid_base_pair_and_pKa[1]]
+        products = [base, ref_acid_base_pair_and_pKa[0]]
+        delta_g = pka_to_delta_g(pKa, n_protons=1) - pka_to_delta_g(ref_acid_base_pair_and_pKa[2], n_protons=1)
+        super().__init__(name, reactants, products, delta_g)
+        self.acid = acid
+        self.base = base
+        self._ref_acid_base_pair_and_pKa = ref_acid_base_pair_and_pKa
+
+    @property
+    def T(self):
+        return self._T
+    
+    @T.setter
+    def T(self, new_T):
+        self._T = new_T
+        self.delta_E = pka_to_delta_g(self.pKa, n_protons=1, T=self._T) - pka_to_delta_g(self.ref_acid_base_pair_and_pKa[2], n_protons=1, T=self._T)
+
+    @property
+    def ref_acid_base_pair_and_pKa(self):
+        return self._ref_acid_base_pair_and_pKa
+    
+    @ref_acid_base_pair_and_pKa.setter
+    def ref_acid_base_pair_and_pKa(self, new_ref_acid_base_pair_and_pKa):
+        self._ref_acid_base_pair_and_pKa = new_ref_acid_base_pair_and_pKa
+        self.delta_E = pka_to_delta_g(self.pKa, n_protons=1, T=self._T) - pka_to_delta_g(self._ref_acid_base_pair_and_pKa[2], n_protons=1, T=self._T)
+
+    
 
 class ThermoReaction(Reaction):
     def __init__(self, name, reactants, products, delta_g):
