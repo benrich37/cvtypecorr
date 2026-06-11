@@ -211,7 +211,8 @@ class FormationReaction(ThermoReaction):
         while not finished:
             for el in el_by_priority:
                 assert el in reference_species, f"Element {el} does not have a reference specie defined"
-                target_coeff = next(p[1] for p in formula if p[0] == el)
+                # target_coeff = next(p[1] for p in formula if p[0] == el)
+                target_coeff = dict(formula).get(el, 0)
                 cur_formula_dict = get_cur_reactants_formula_dict(reactants)
                 delta_coeff = target_coeff - cur_formula_dict.get(el, 0)
                 ref_specie = reference_species[el]
