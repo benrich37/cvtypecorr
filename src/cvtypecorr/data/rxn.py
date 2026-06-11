@@ -233,7 +233,7 @@ def voltage_to_mu(voltage, v0=v0_SHE_CANDLE):
 
 def eq_pot_to_electronless_reduction_energy(eq_pot, n_electrons, v0=v0_SHE_CANDLE):
     mu = voltage_to_mu(eq_pot, v0)
-    electronless_reduction_energy = mu*n_electrons
+    electronless_reduction_energy = -mu*n_electrons
     return electronless_reduction_energy
 
 def electronless_reduction_energy_to_eq_pot(electronless_reduction_energy, n_electrons, v0=v0_SHE_CANDLE):
