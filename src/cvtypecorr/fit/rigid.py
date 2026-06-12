@@ -6,8 +6,6 @@ from cvtypecorr.data.rxn import (
     pka_to_delta_g,
 )
 
-# v0_SHE_CANDLE = 4.66
-
 class Collection:
     def __init__(self, corrections: dict[str, float] | None = None, v0: float | None = None):
         if corrections is None:
@@ -26,23 +24,30 @@ class Collection:
         n_missing = len(missing_products) + len(missing_reactants)
         if n_missing > 1:
             raise ValueError(f"Rigid correction can only apply fit correction at a time (currently missing {missing_reactants} and {missing_products})")
+        e_err_remaining = e_err
+        for specie, coef in rxn.reactants:
+            if specie in self.corrections:
+                e_err_remaining += self.corrections[specie]*coef
+        for specie, coef in rxn.products:
+            if specie in self.corrections:
+                e_err_remaining -= self.corrections[specie]*coef
         missing_specie = (missing_products + missing_reactants)[0][0]
         missing_coef = (missing_products + missing_reactants)[0][1]
         coef = -1 if len(missing_products) else 1
-        self.corrections[missing_specie] = coef*(1/missing_coef)*e_err
+        self.corrections[missing_specie] = coef*(1/missing_coef)*e_err_remaining
 
-    def apply_redox_correction(self, rxn: RedoxReaction, dft_eq_pot: float, overwrite: str | None = None):
+    def apply_redox_correction(self, rxn: RedoxReaction, dft_eq_pot: float | None = None, dft_electronless_reduction_energy: float | None = None, overwrite: str | None = None):
         n_elec = rxn.electrons
+        if dft_eq_pot is None and dft_electronless_reduction_energy is None:
+            raise ValueError("Must provide either dft_eq_pot or dft_electronless_reduction_energy")
+        elif dft_eq_pot is not None and dft_electronless_reduction_energy is not None:
+            raise ValueError("Must provide only one of dft_eq_pot or dft_electronless_reduction_energy, not both")
+        elif dft_eq_pot is not None:
+             dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, self.v0)
         rxn.v0 = self.v0
-        dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, rxn.v0)
         self.corrections["e-"] = 0.0
         self.apply_correction(rxn, dft_electronless_reduction_energy, overwrite=overwrite)
 
     def apply_acid_correction(self, rxn: AcidDeprotReaction, dft_pka: float, overwrite: str | None = None):
         dft_delta_g = pka_to_delta_g(dft_pka, n_protons=1, T=rxn.T)
         self.apply_correction(rxn, dft_delta_g, overwrite=overwrite)
-        # n_elec = rxn.electrons
-        # rxn.v0 = self.v0
-        # dft_electronless_reduction_energy = eq_pot_to_electronless_reduction_energy(dft_eq_pot, n_elec, rxn.v0)
-        # self.corrections["e-"] = 0.0
-        # self.apply_correction(rxn, dft_electronless_reduction_energy)
