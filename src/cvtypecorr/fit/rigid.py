@@ -15,6 +15,21 @@ class Collection:
         self.corrections = corrections
         self.v0 = v0
 
+
+    def get_reaction_correction(self, rxn: Reaction, zero_on_missing: bool = False):
+        return self._get_reaction_correction(rxn.reactants, rxn.products, zero_on_missing=zero_on_missing)
+    
+    def _get_reaction_correction(self, reactants, products, zero_on_missing: bool):
+        corr = 0.0
+        for sign, collection in zip([-1, 1], [reactants, products]):
+            for specie, coef in collection:
+                if specie in self.corrections:
+                    corr += sign*self.corrections[specie]*coef
+                else:
+                    if not zero_on_missing:
+                        raise ValueError(f"Specie {specie} not found in corrections collection")
+        return corr
+
     def apply_correction(self, rxn: Reaction, dft_nrg: float, overwrite: str | None = None):
         e_err = dft_nrg - rxn.delta_E
         if not overwrite is None:
@@ -24,13 +39,7 @@ class Collection:
         n_missing = len(missing_products) + len(missing_reactants)
         if n_missing > 1:
             raise ValueError(f"Rigid correction can only apply fit correction at a time (currently missing {missing_reactants} and {missing_products})")
-        e_err_remaining = e_err
-        for specie, coef in rxn.reactants:
-            if specie in self.corrections:
-                e_err_remaining += self.corrections[specie]*coef
-        for specie, coef in rxn.products:
-            if specie in self.corrections:
-                e_err_remaining -= self.corrections[specie]*coef
+        e_err_remaining = e_err + self.get_reaction_correction(rxn, zero_on_missing=True)
         missing_specie = (missing_products + missing_reactants)[0][0]
         missing_coef = (missing_products + missing_reactants)[0][1]
         coef = -1 if len(missing_products) else 1
