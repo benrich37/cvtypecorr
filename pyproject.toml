@@ -1,11 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "cvtypecorr"
 dynamic = ["version"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "Ben Rich", email = "benjamin.rich@colorado.edu" }]
 
 
 #TODO: Figure out what version we want for ipykernel
 dependencies = [
-    "janaf"
+    "janaf",
+    "numpy",
+    "scipy",
+    "pymatgen",
 ]

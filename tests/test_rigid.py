@@ -25,7 +25,7 @@ def test_collection_redox():
     )
     assert all([specie in test_collection.corrections for specie in grounded_species])
     test_collection.apply_redox_correction(rxn1, V_exp + delta_V)
-    assert test_collection.corrections["HCOO-"] == -nelec*delta_V
+    assert test_collection.corrections["HCOO-"] == nelec*delta_V
 
 def test_collection_acid():
     acid = "NO3H"

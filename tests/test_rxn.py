@@ -43,3 +43,22 @@ def test_formation_reaction(name, formula, delta_g, el_by_priority):
     el_by_priority_missing_one = test.el_by_priority[:-1]
     with pytest.raises(AssertionError):
         FormationReaction(name, formula, delta_g, el_by_priority_missing_one)
+
+@pytest.mark.parametrize("n_electrons", [-3, -1, 1, 2])
+def test_eq_pot_roundtrip(n_electrons):
+    from cvtypecorr.data.rxn import eq_pot_to_electronless_reduction_energy, electronless_reduction_energy_to_eq_pot
+    eq_pot = 0.96
+    nrg = eq_pot_to_electronless_reduction_energy(eq_pot, n_electrons)
+    assert electronless_reduction_energy_to_eq_pot(nrg, n_electrons) == pytest.approx(eq_pot)
+
+
+def test_acid_deprot_setters():
+    from cvtypecorr.data.rxn import AcidDeprotReaction
+    rxn = AcidDeprotReaction("test", "NO3H", "NO3-", -1.3)
+    delta_E_default = rxn.delta_E
+    rxn.T = 350.0
+    assert rxn.delta_E == pytest.approx(AcidDeprotReaction("test", "NO3H", "NO3-", -1.3, T=350.0).delta_E)
+    rxn.T = 298.15
+    assert rxn.delta_E == pytest.approx(delta_E_default)
+    rxn.ref_acid_base_pair_and_pKa = ("NH4+", "NH3", 9.24)
+    assert rxn.delta_E == pytest.approx(AcidDeprotReaction("test", "NO3H", "NO3-", -1.3, ref_acid_base_pair_and_pKa=("NH4+", "NH3", 9.24)).delta_E)

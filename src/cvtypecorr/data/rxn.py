@@ -115,10 +115,11 @@ class AcidDeprotReaction(Reaction):
         self._T = T
         reactants = [acid, ref_acid_base_pair_and_pKa[1]]
         products = [base, ref_acid_base_pair_and_pKa[0]]
-        delta_g = pka_to_delta_g(pKa, n_protons=1) - pka_to_delta_g(ref_acid_base_pair_and_pKa[2], n_protons=1)
+        delta_g = pka_to_delta_g(pKa, n_protons=1, T=T) - pka_to_delta_g(ref_acid_base_pair_and_pKa[2], n_protons=1, T=T)
         super().__init__(name, reactants, products, delta_g)
         self.acid = acid
         self.base = base
+        self.pKa = pKa
         self._ref_acid_base_pair_and_pKa = ref_acid_base_pair_and_pKa
 
     @property
@@ -237,6 +238,6 @@ def eq_pot_to_electronless_reduction_energy(eq_pot, n_electrons, v0=v0_SHE_CANDL
     return electronless_reduction_energy
 
 def electronless_reduction_energy_to_eq_pot(electronless_reduction_energy, n_electrons, v0=v0_SHE_CANDLE):
-    mu = electronless_reduction_energy/n_electrons
+    mu = -electronless_reduction_energy/n_electrons
     eq_pot = mu_to_voltage(mu, v0)
     return eq_pot
