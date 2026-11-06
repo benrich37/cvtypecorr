@@ -41,3 +41,5 @@ Two layers: `data/` defines reactions with experimental reference energies; `fit
 - `apply_redox_correction` accepts a DFT equilibrium potential or an electronless reaction energy (exactly one), syncs `rxn.v0` to the collection's `v0`, and pins `corrections["e-"] = 0`. `apply_acid_correction` takes a DFT pKa.
 
 `examples/obtaining_rigid_corrections.ipynb` walks through a full correction chain (H3O+ → NO3- → NO → NO2H → NO2-) and is the best reference for intended usage and sign conventions.
+
+`examples/no3rr_corrections/` (branch `no3rr-correction-example`, 2026-11-06) is the same chain on real data: it fits the NO3_ads_gen corrections, applies them to adsorption steps on FeN4-i and gives NO3- adsorption energies on 29 surfaces. It runs without the research repo, and its three scripts assert agreement with the research repo's own results (`data/research_reference.json`), so run them after changing reaction energies or correction signs here. Its README has the method, data provenance and the scheme-comparison notes; `extract/extract_from_research.py` regenerates `data/`.

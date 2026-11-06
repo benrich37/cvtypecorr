@@ -1,0 +1,603 @@
+{
+ "_about": "Values computed by the research repo's own code (corrections.get_collection and the step functions of no3_pathway_sim_tools via the step map of no3rr_pathway_map.py); the example must reproduce them.",
+ "corrections": {
+  "H2": 0.0,
+  "H2O": 0.0,
+  "NO3H": 0.0,
+  "e-": 0.0,
+  "H3O+": 0.29145096384687363,
+  "NO3-": -0.2171472457151552,
+  "NO": -0.5737498615727091,
+  "NO2H": -0.20688822158323783,
+  "NO2-": -0.47096709169476514,
+  "OH-": -0.5273837742008931,
+  "NH3": 0.07569324023039892,
+  "NH4+": 0.974687722856097,
+  "O": 0.0,
+  "H": 0.0,
+  "N": 0.0,
+  "NH": 0.0,
+  "NH2": 0.0,
+  "NOH": 0.0,
+  "NHO": 0.0,
+  "NH2O": 0.0,
+  "NH3O": 0.0,
+  "NHOH": 0.0,
+  "NH2OH": 0.0
+ },
+ "steps": {
+  "surf": "FeN4-i",
+  "rows": [
+   {
+    "step": "* -> NO3",
+    "bias": "0V",
+    "dG_raw": 0.19252488174788596,
+    "dG_corrected": 0.19252488174788596,
+    "configs_returned": [
+     "*",
+     "in_bi_metal_atop_cc_bridge"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_no3_ads_nrg(cna, surf, bias, \"*\", \"NO3\", rct_tuples=[], pdt_tuples=[])"
+   },
+   {
+    "step": "* -> NO3",
+    "bias": "n1p0V",
+    "dG_raw": 0.3932895786674635,
+    "dG_corrected": 0.3932895786674635,
+    "configs_returned": [
+     "*",
+     "in_bi_metal_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_no3_ads_nrg(cna, surf, bias, \"*\", \"NO3\", rct_tuples=[], pdt_tuples=[])"
+   },
+   {
+    "step": "* -> O",
+    "bias": "0V",
+    "dG_raw": 0.053575054234897834,
+    "dG_corrected": -0.2002447917447121,
+    "configs_returned": [
+     "in_mnn2_hollow",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_no3_to_o_and_no2_nrg(cna, surf, bias, rct_tuples=[], pdt_tuples=[(\"O\", 1)])"
+   },
+   {
+    "step": "* -> O",
+    "bias": "n1p0V",
+    "dG_raw": -0.4511834333789011,
+    "dG_corrected": -0.705003279358511,
+    "configs_returned": [
+     "in_mnn2_hollow",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_no3_to_o_and_no2_nrg(cna, surf, bias, rct_tuples=[], pdt_tuples=[(\"O\", 1)])"
+   },
+   {
+    "step": "* -> NO2",
+    "bias": "0V",
+    "dG_raw": -0.5362962552753743,
+    "dG_corrected": -0.5362962552753743,
+    "configs_returned": [
+     "in_mono_metal_atop",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_no2_ads_nrg(cna, surf, bias, rct_tuples=[], pdt_tuples=[])"
+   },
+   {
+    "step": "* -> NO2",
+    "bias": "n1p0V",
+    "dG_raw": -0.44602305325315683,
+    "dG_corrected": -0.44602305325315683,
+    "configs_returned": [
+     "in_mono_metal_ecl",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_no2_ads_nrg(cna, surf, bias, rct_tuples=[], pdt_tuples=[])"
+   },
+   {
+    "step": "* -> H",
+    "bias": "0V",
+    "dG_raw": 0.8761449543890194,
+    "dG_corrected": 0.5846939905421458,
+    "configs_returned": [
+     "in_metal_atop",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_h_ads_nrg(cna, surf, bias, pH=pH, rct_tuples=[], pdt_tuples=[(\"H\", 1)])"
+   },
+   {
+    "step": "* -> H",
+    "bias": "n1p0V",
+    "dG_raw": -0.2650505641922791,
+    "dG_corrected": -0.5565015280391528,
+    "configs_returned": [
+     "in_metal_atop",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_h_ads_nrg(cna, surf, bias, pH=pH, rct_tuples=[], pdt_tuples=[(\"H\", 1)])"
+   },
+   {
+    "step": "NO3 -> NO3H",
+    "bias": "0V",
+    "dG_raw": 0.5970280567271402,
+    "dG_corrected": 0.5227243385954218,
+    "configs_returned": [
+     "ASE_from_from_no3_out_metal_mono_O_atop_gau_tilted_with_OH_up",
+     "in_bi_metal_atop_cc_bridge"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO3\", \"NO3H\", pH=pH, rct_tuples=[(\"NO3-\", 1)], pdt_tuples=[(\"NO3H\", 1)])"
+   },
+   {
+    "step": "NO3 -> NO3H",
+    "bias": "n1p0V",
+    "dG_raw": 0.41799684304351103,
+    "dG_corrected": 0.3436931249117926,
+    "configs_returned": [
+     "from_no3_out_metal_mono_O_atop_ecl_tilted_with_OH_low",
+     "in_bi_metal_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO3\", \"NO3H\", pH=pH, rct_tuples=[(\"NO3-\", 1)], pdt_tuples=[(\"NO3H\", 1)])"
+   },
+   {
+    "step": "NO3 -> O",
+    "bias": "0V",
+    "dG_raw": -0.13894982751298812,
+    "dG_corrected": -0.39276967349259806,
+    "configs_returned": [
+     "in_mnn2_hollow",
+     "in_bi_metal_atop_cc_bridge"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_ads_no3_to_o_and_no2_nrg(cna, surf, bias, rct_tuples=[(\"NO3-\", 1)], pdt_tuples=[(\"O\", 1)])"
+   },
+   {
+    "step": "NO3 -> O",
+    "bias": "n1p0V",
+    "dG_raw": -0.8444730120463646,
+    "dG_corrected": -1.0982928580259745,
+    "configs_returned": [
+     "in_mnn2_hollow",
+     "in_bi_metal_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_ads_no3_to_o_and_no2_nrg(cna, surf, bias, rct_tuples=[(\"NO3-\", 1)], pdt_tuples=[(\"O\", 1)])"
+   },
+   {
+    "step": "NO3H -> NO2",
+    "bias": "0V",
+    "dG_raw": -1.42764611727398,
+    "dG_corrected": -2.1900641728156187,
+    "configs_returned": [
+     "in_mono_metal_atop",
+     "ASE_from_from_no3_out_metal_mono_O_atop_gau_tilted_with_OH_up"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_dehyd_nrg(cna, surf, bias, \"NO3H\", \"NO2\", pH=pH, rct_tuples=[(\"NO3H\", 1)], pdt_tuples=[(\"NO2-\", 1), (\"H2O\", 1)])"
+   },
+   {
+    "step": "NO3H -> NO2",
+    "bias": "n1p0V",
+    "dG_raw": -3.3591064433458087,
+    "dG_corrected": -4.121524498887448,
+    "configs_returned": [
+     "in_mono_metal_ecl",
+     "from_no3_out_metal_mono_O_atop_ecl_tilted_with_OH_low"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_dehyd_nrg(cna, surf, bias, \"NO3H\", \"NO2\", pH=pH, rct_tuples=[(\"NO3H\", 1)], pdt_tuples=[(\"NO2-\", 1), (\"H2O\", 1)])"
+   },
+   {
+    "step": "O -> OH",
+    "bias": "0V",
+    "dG_raw": -0.24000603556851274,
+    "dG_corrected": -1.0588407736162795,
+    "configs_returned": [
+     "from_o_out_metal_atop_with_OH_ecl",
+     "in_mnn2_hollow"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"O\", \"OH\", pH=pH, rct_tuples=[(\"O\", 1)], pdt_tuples=[(\"OH-\", 1)])"
+   },
+   {
+    "step": "O -> OH",
+    "bias": "n1p0V",
+    "dG_raw": -1.055063923855414,
+    "dG_corrected": -1.8738986619031808,
+    "configs_returned": [
+     "from_o_out_metal_atop_with_OH_ecl",
+     "in_mnn2_hollow"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"O\", \"OH\", pH=pH, rct_tuples=[(\"O\", 1)], pdt_tuples=[(\"OH-\", 1)])"
+   },
+   {
+    "step": "OH -> *",
+    "bias": "0V",
+    "dG_raw": 0.08463405781185429,
+    "dG_corrected": 0.32056686816587376,
+    "configs_returned": [
+     "clean",
+     "from_o_out_metal_atop_with_OH_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_oh_to_h2o_nrg(cna, surf, bias, pH=pH, rct_tuples=[(\"OH-\", 1)], pdt_tuples=[(\"H2O\", 1)])"
+   },
+   {
+    "step": "OH -> *",
+    "bias": "n1p0V",
+    "dG_raw": -0.5955496111473622,
+    "dG_corrected": -0.3596168007933427,
+    "configs_returned": [
+     "clean",
+     "from_o_out_metal_atop_with_OH_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_oh_to_h2o_nrg(cna, surf, bias, pH=pH, rct_tuples=[(\"OH-\", 1)], pdt_tuples=[(\"H2O\", 1)])"
+   },
+   {
+    "step": "H -> *",
+    "bias": "0V",
+    "dG_raw": 0.4566408014670742,
+    "dG_corrected": 0.16518983762020056,
+    "configs_returned": [
+     "in_metal_atop",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_h_to_h2_nrg(cna, surf, bias, pH=pH, rct_tuples=[(\"H\", 1)], pdt_tuples=[])"
+   },
+   {
+    "step": "H -> *",
+    "bias": "n1p0V",
+    "dG_raw": -0.4021637248151819,
+    "dG_corrected": -0.6936146886620556,
+    "configs_returned": [
+     "in_metal_atop",
+     "clean"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_h_to_h2_nrg(cna, surf, bias, pH=pH, rct_tuples=[(\"H\", 1)], pdt_tuples=[])"
+   }
+  ]
+ },
+ "no3_adsorption": [
+  {
+   "surf": "AgN4-i",
+   "bias": "0V",
+   "dG": 0.4729013650048728,
+   "config": "in_ooo_hollow_bent"
+  },
+  {
+   "surf": "AgN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5186459347842174,
+   "config": "in_mono_metal_ecl"
+  },
+  {
+   "surf": "AuN4-i",
+   "bias": "0V",
+   "dG": 0.4951835913943796,
+   "config": "in_noo_hollow"
+  },
+  {
+   "surf": "AuN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5525250303562643,
+   "config": "in_mono_metal_ecl"
+  },
+  {
+   "surf": "CdN4-i",
+   "bias": "0V",
+   "dG": -0.11074209706202964,
+   "config": "ASE_pert_from_in_mono_metal_atop"
+  },
+  {
+   "surf": "CdN4-i",
+   "bias": "n1p0V",
+   "dG": 0.051059309245829354,
+   "config": "in_bi_tilted_gau"
+  },
+  {
+   "surf": "CoN4-i",
+   "bias": "0V",
+   "dG": 0.2560233847307245,
+   "config": "ASE_pert_from_in_bi_metal_gau"
+  },
+  {
+   "surf": "CoN4-i",
+   "bias": "n1p0V",
+   "dG": 0.49079568752858904,
+   "config": "in_no_bridge"
+  },
+  {
+   "surf": "CrN4-i",
+   "bias": "0V",
+   "dG": -0.3306019123720034,
+   "config": "in_no_bridge"
+  },
+  {
+   "surf": "CrN4-i",
+   "bias": "n1p0V",
+   "dG": 0.19011743010560167,
+   "config": "in_bi_metal_gau"
+  },
+  {
+   "surf": "CuN4-i",
+   "bias": "0V",
+   "dG": 0.5013867191173631,
+   "config": "in_bi_tilted_ecl"
+  },
+  {
+   "surf": "CuN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5189182575504674,
+   "config": "in_mono_metal_gau"
+  },
+  {
+   "surf": "FeN4-i",
+   "bias": "0V",
+   "dG": 0.19252488174788596,
+   "config": "in_bi_metal_atop_cc_bridge"
+  },
+  {
+   "surf": "FeN4-i",
+   "bias": "n1p0V",
+   "dG": 0.3932895786674635,
+   "config": "in_bi_metal_ecl"
+  },
+  {
+   "surf": "HfN4-i",
+   "bias": "0V",
+   "dG": -0.8627859895259462,
+   "config": "in_bi_tilted_gau"
+  },
+  {
+   "surf": "HfN4-i",
+   "bias": "n1p0V",
+   "dG": -1.6503872727844282,
+   "config": "in_ooo_hollow_bent"
+  },
+  {
+   "surf": "HgN4-i",
+   "bias": "0V",
+   "dG": 0.5123645177354774,
+   "config": "in_mono_metal_ecl"
+  },
+  {
+   "surf": "HgN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5655391191921808,
+   "config": "in_mono_metal_atop"
+  },
+  {
+   "surf": "IrN4-i",
+   "bias": "0V",
+   "dG": 0.5070159570732358,
+   "config": "in_noo_hollow"
+  },
+  {
+   "surf": "IrN4-i",
+   "bias": "n1p0V",
+   "dG": 0.49749927036464214,
+   "config": "in_mono_metal_ecl"
+  },
+  {
+   "surf": "MnN4-i",
+   "bias": "0V",
+   "dG": 0.06176834588040947,
+   "config": "in_ncoord_bent"
+  },
+  {
+   "surf": "MnN4-i",
+   "bias": "n1p0V",
+   "dG": 0.40670064661753713,
+   "config": "in_ncoord_bent"
+  },
+  {
+   "surf": "MoN4-i",
+   "bias": "0V",
+   "dG": -1.7458741611972073,
+   "config": "in_noo_hollow_resub"
+  },
+  {
+   "surf": "MoN4-i",
+   "bias": "n1p0V",
+   "dG": -1.4402905978495255,
+   "config": "in_noo_hollow"
+  },
+  {
+   "surf": "NbN4-i",
+   "bias": "0V",
+   "dG": -1.0535270299296826,
+   "config": "in_bi_metal_gau"
+  },
+  {
+   "surf": "NbN4-i",
+   "bias": "n1p0V",
+   "dG": -1.5555944466268556,
+   "config": "in_ooo_hollow_bent"
+  },
+  {
+   "surf": "NiN4-i",
+   "bias": "0V",
+   "dG": 0.5114021513072657,
+   "config": "in_no_bridge"
+  },
+  {
+   "surf": "NiN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5174781652312959,
+   "config": "in_mono_metal_ecl"
+  },
+  {
+   "surf": "OsN4-i",
+   "bias": "0V",
+   "dG": -0.5585563415788783,
+   "config": "in_bi_tilted_gau"
+  },
+  {
+   "surf": "OsN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5043474825324665,
+   "config": "in_bi_tilted_ecl"
+  },
+  {
+   "surf": "PdN4-i",
+   "bias": "0V",
+   "dG": 0.5079033200581762,
+   "config": "in_no_bridge"
+  },
+  {
+   "surf": "PdN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5098008757304342,
+   "config": "in_bi_tilted_ecl"
+  },
+  {
+   "surf": "PtN4-i",
+   "bias": "0V",
+   "dG": 0.5066188580312883,
+   "config": "in_no_bridge"
+  },
+  {
+   "surf": "PtN4-i",
+   "bias": "n1p0V",
+   "dG": 0.5053930239901092,
+   "config": "in_mono_metal_ecl"
+  },
+  {
+   "surf": "ReN4-i",
+   "bias": "0V",
+   "dG": -1.6990468264539231,
+   "config": "in_bi_metal_ecl"
+  },
+  {
+   "surf": "ReN4-i",
+   "bias": "n1p0V",
+   "dG": -0.9376387274933222,
+   "config": "in_bi_metal_gau"
+  },
+  {
+   "surf": "RhN4-i",
+   "bias": "0V",
+   "dG": 0.42136427839250246,
+   "config": "in_bi_metal_gau"
+  },
+  {
+   "surf": "RhN4-i",
+   "bias": "n1p0V",
+   "dG": 0.48331256285018753,
+   "config": "in_bi_tilted_gau"
+  },
+  {
+   "surf": "RuN4-i",
+   "bias": "0V",
+   "dG": -0.3247913931063522,
+   "config": "in_bi_tilted_gau_resub"
+  },
+  {
+   "surf": "RuN4-i",
+   "bias": "n1p0V",
+   "dG": 0.38160348295969015,
+   "config": "in_mono_metal_atop"
+  },
+  {
+   "surf": "ScN4-i",
+   "bias": "0V",
+   "dG": -0.11305805122356105,
+   "config": "in_bi_tilted_gau_resub"
+  },
+  {
+   "surf": "ScN4-i",
+   "bias": "n1p0V",
+   "dG": 0.0005108955920150038,
+   "config": "in_bi_metal_ecl"
+  },
+  {
+   "surf": "TaN4-i",
+   "bias": "0V",
+   "dG": -1.5257054265821353,
+   "config": "in_bi_metal_ecl"
+  },
+  {
+   "surf": "TaN4-i",
+   "bias": "n1p0V",
+   "dG": -2.836611477048791,
+   "config": "in_ooo_hollow_bent"
+  },
+  {
+   "surf": "TcN4-i",
+   "bias": "0V",
+   "dG": -1.1372401069729676,
+   "config": "in_bi_tilted_ecl"
+  },
+  {
+   "surf": "TcN4-i",
+   "bias": "n1p0V",
+   "dG": -0.4441840857034549,
+   "config": "in_mono_metal_atop"
+  },
+  {
+   "surf": "TiN4-i",
+   "bias": "0V",
+   "dG": -0.9037322567637602,
+   "config": "in_bi_metal_ecl"
+  },
+  {
+   "surf": "TiN4-i",
+   "bias": "n1p0V",
+   "dG": -1.0928610983773979,
+   "config": "in_ncoord_bent"
+  },
+  {
+   "surf": "VN4-i",
+   "bias": "0V",
+   "dG": -1.2501274179030588,
+   "config": "in_noo_hollow_resub"
+  },
+  {
+   "surf": "VN4-i",
+   "bias": "n1p0V",
+   "dG": -0.987839013332632,
+   "config": "in_bi_metal_gau"
+  },
+  {
+   "surf": "WN4-i",
+   "bias": "0V",
+   "dG": -2.248469834938078,
+   "config": "in_bi_metal_gau"
+  },
+  {
+   "surf": "WN4-i",
+   "bias": "n1p0V",
+   "dG": -1.97336259497024,
+   "config": "in_ooo_hollow_bent"
+  },
+  {
+   "surf": "YN4-i",
+   "bias": "0V",
+   "dG": 0.17487734696442203,
+   "config": "in_ooo_hollow_bent"
+  },
+  {
+   "surf": "YN4-i",
+   "bias": "n1p0V",
+   "dG": 0.31035725833316974,
+   "config": "in_bi_tilted_gau"
+  },
+  {
+   "surf": "ZnN4-i",
+   "bias": "0V",
+   "dG": 0.13993967266287655,
+   "config": "in_bi_tilted_ecl"
+  },
+  {
+   "surf": "ZnN4-i",
+   "bias": "n1p0V",
+   "dG": 0.3535447994545393,
+   "config": "in_bi_metal_ecl"
+  },
+  {
+   "surf": "ZrN4-i",
+   "bias": "0V",
+   "dG": -0.5308614815312467,
+   "config": "in_bi_tilted_gau"
+  },
+  {
+   "surf": "ZrN4-i",
+   "bias": "n1p0V",
+   "dG": -1.13688099411047,
+   "config": "in_ooo_hollow_bent"
+  }
+ ]
+}

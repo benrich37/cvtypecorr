@@ -1,0 +1,45 @@
+{
+ "_about": "Constants and conventions of the NO3_ads_gen energies as used by the current pathway analysis (no3rr_pathway_map.py). Energies in eV.",
+ "T_K": 300.0,
+ "kB_eV_per_K": 8.617333262145179e-05,
+ "v0_SHE_eV": 4.66,
+ "pH": 6.3,
+ "energy_tags": [
+  "elec",
+  "trans",
+  "rot"
+ ],
+ "required_tags": [
+  "elec"
+ ],
+ "mu_eV": {
+  "No_bias": 0.0,
+  "0V": -4.660000045209027,
+  "n1p0V": -3.660000022777729
+ },
+ "bias_vs_SHE_V": {
+  "0V": 4.52090267444305e-08,
+  "n1p0V": -0.999999977222271
+ },
+ "conc_M": {
+  "fit": {
+   "H2O": 55.5
+  },
+  "steps": {
+   "H2O": 55.34,
+   "H3O+": 5.011872336272725e-07
+  }
+ },
+ "provenance": {
+  "extracted": "2026-11-06T20:30:23+00:00",
+  "research_commit": "6e77a2a",
+  "research_files_unmodified_at_commit": true,
+  "energy_cache": "research:NO3_ads_gen/anl/mnc/data.json",
+  "energy_cache_sha1": "dba6b8f35544799692570299b8e6af0390aca945",
+  "labels": "~/ht_data_anl/ht_labels.json",
+  "labels_sha1": "dfd02d3c7343b3d02957a05c34da55e512ace759",
+  "project_root_local": "/Volumes/Ext4TB/scratch_backup/perl/NO3_ads_gen/PBED30_GBRV_20Ha",
+  "project_root_anvil": "anvil:/anvil/projects/x-chm260113/Data/NO3_ads_gen/PBED30_GBRV_20Ha",
+  "calc_dir_is_relative_to": "project root (PBED30_GBRV_20Ha)"
+ }
+}

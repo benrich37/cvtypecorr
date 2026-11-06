@@ -1,0 +1,121 @@
+{
+ "_about": "Species corrections (eV), added to the DFT free energy of each species. Written by fit_corrections.py; 'fit' lists the reaction, the experimental value and the DFT value of each link.",
+ "corrections": {
+  "H2": 0.0,
+  "H2O": 0.0,
+  "NO3H": 0.0,
+  "e-": 0.0,
+  "H3O+": 0.29145096384687363,
+  "NO3-": -0.21714724571498573,
+  "NO": -0.5737498615725396,
+  "NO2H": -0.2068882215830683,
+  "NO2-": -0.47096709169465206,
+  "OH-": -0.5273837742008931,
+  "NH3": 0.07569324023051194,
+  "NH4+": 0.97468772285621,
+  "O": 0.0,
+  "H": 0.0,
+  "N": 0.0,
+  "NH": 0.0,
+  "NH2": 0.0,
+  "NOH": 0.0,
+  "NHO": 0.0,
+  "NH2O": 0.0,
+  "NH3O": 0.0,
+  "NHOH": 0.0,
+  "NH2OH": 0.0
+ },
+ "v0_SHE_eV": 4.66,
+ "fit": [
+  {
+   "species": "H3O+",
+   "reaction": "2 H3O+ + 2 e- -> H2 + 2 H2O",
+   "kind": "redox",
+   "exp": 0.0,
+   "dft": -0.29145096384687363,
+   "unit": "V_SHE",
+   "correction": 0.29145096384687363
+  },
+  {
+   "species": "NO3-",
+   "reaction": "NO3H + H2O -> NO3- + H3O+",
+   "kind": "acid",
+   "exp": -1.3,
+   "dft": -2.5559928147925732,
+   "unit": "pKa",
+   "correction": -0.21714724571498573
+  },
+  {
+   "species": "NO",
+   "reaction": "NO3- + 3 e- + 4 H3O+ -> NO + 6 H2O",
+   "kind": "redox",
+   "exp": 0.96,
+   "dft": 0.4525311762516502,
+   "unit": "V_SHE",
+   "correction": -0.5737498615725396
+  },
+  {
+   "species": "NO2H",
+   "reaction": "NO2H + e- + H3O+ -> NO + 2 H2O",
+   "kind": "redox",
+   "exp": 0.996,
+   "dft": 0.3376873961636555,
+   "unit": "V_SHE",
+   "correction": -0.2068882215830683
+  },
+  {
+   "species": "NO2-",
+   "reaction": "NO2H + H2O -> NO2- + H3O+",
+   "kind": "acid",
+   "exp": 3.29,
+   "dft": 2.8273158447289215,
+   "unit": "pKa",
+   "correction": -0.47096709169465206
+  },
+  {
+   "species": "OH-",
+   "reaction": "H2O + H2O -> OH- + H3O+",
+   "kind": "acid",
+   "exp": 14.0,
+   "dft": 17.98808999103499,
+   "unit": "pKa",
+   "correction": -0.5273837742008931
+  },
+  {
+   "species": "NH3",
+   "reaction": "NO2- + 6 e- + 7 H3O+ -> NH3 + 9 H2O",
+   "kind": "redox",
+   "exp": 0.792,
+   "dft": 0.5430839308328421,
+   "unit": "V_SHE",
+   "correction": 0.07569324023051194
+  },
+  {
+   "species": "NH4+",
+   "reaction": "NH4+ + H2O -> NH3 + H3O+",
+   "kind": "acid",
+   "exp": 9.24,
+   "dft": 19.509611177539767,
+   "unit": "pKa",
+   "correction": 0.97468772285621
+  }
+ ],
+ "grounded_at_zero": [
+  "H2",
+  "H2O",
+  "NO3H"
+ ],
+ "placeholder_zero": [
+  "O",
+  "H",
+  "N",
+  "NH",
+  "NH2",
+  "NOH",
+  "NHO",
+  "NH2O",
+  "NH3O",
+  "NHOH",
+  "NH2OH"
+ ]
+}
