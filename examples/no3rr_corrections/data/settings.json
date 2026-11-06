@@ -31,13 +31,13 @@
   }
  },
  "provenance": {
-  "extracted": "2026-11-06T21:21:16+00:00",
+  "extracted": "2026-11-06T21:43:16+00:00",
   "research_commit": "6e77a2a",
   "research_files_unmodified_at_commit": false,
   "research_file_sha1": {
    "src/research/projects/no3_ads_gen/corrections.py": "ebe9ba8a31d6d3a5100491ef6827d120c8f25808",
    "src/research/projects/no3_ads_gen/energy_caching.py": "52bca03fb1b4e7c6cee84274bdd07fe224b2fc3b",
-   "src/research/projects/no3_ads_gen/no3_pathway_sim_tools.py": "3b15df16e49d2845f6633963816d0466b45346c1",
+   "src/research/projects/no3_ads_gen/no3_pathway_sim_tools.py": "ef35c1a701ab7c3d96ed7e4202324236f5b5e0b6",
    "NO3_ads_gen/anl/mnc/no3rr_pathway_map.py": "7c6bced975f6af8df2f0bf9a5b3b6a91002fc5ca",
    "NO3_ads_gen/anl/mnc/data.json": "342d07831a990dd59e4d15e406a28a93965c804b"
   },

@@ -204,7 +204,10 @@ Points where two reasonable schemes are likely to differ, largest first:
    that energy correction; CoN4-i at 0 V would need re-optimization. Energies from the same production builds are
    consistent with these; a fixed build or another code would differ by about this much.
 7. **pH.** The fit is at standard state, so the corrections do not depend on pH: only H2O gets an activity there
-   (55.5 M); H3O+ and the anions are at 1 M. pH enters the steps only through kT ln 10^-pH for H3O+.
+   (55.5 M); H3O+ and the anions are at 1 M. In the steps, pH enters through kT ln 10^-pH for H3O+, and through
+   steps that take up or release a free acid. There the acid and its conjugate base are in equilibrium at pH, 1 M
+   together (research `no3_pathway_sim_tools.get_acid_conc`, fixed 2026-11-06). That puts HNO2 at 1e-3 M beside
+   ~1 M NO2-, and NH4+ at ~1 M for the terminal *NH3 -> * + NH4+ step (not among the steps here).
 8. **Temperature.** The cache is at 300 K, the experimental data at 298.15 K. In the acid links the DFT dG is
    converted to a pKa at 300 K and back to a dG at 298.15 K (as the research code does), which scales it by
    298.15/300. Making both 298.15 K moves the corrections by at most 7 meV (OH- -0.0066, NH4+ +0.0071; NO3-, NO
