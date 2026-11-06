@@ -143,10 +143,12 @@ Points where two reasonable schemes are likely to differ, largest first:
    Cu, Pd, Ag, Ir, Pt, Au, Hg (and Co, Rh, Os at -1 V) that is a physisorbed or desorbed NO3, and a few minima come
    from unfinished optimizations. The `intact+fin` column gives the alternative. HgN4-i is in the table, but the
    pathway analysis leaves it out.
-5. **D3.** The production JDFTx builds have the D3 C6 ordering error. Measured shifts on adsorption energies are about
-   -7 meV per adsorbed O and +1 meV per N (research `Claude_Explore/05`), so roughly -20 meV for *NO3 (additive
-   estimate), i.e. more exergonic than a corrected build would give. A per-calc assessment is in progress (research
-   `NO3_ads_gen/anl/d3_c6_fix_impact/`, 2026-11-06).
+5. **D3.** All these calculations, and every production JDFTx build so far, have the D3 C6 indexing error (fixed
+   in jdftx b758dd5c). The fix makes these NO3 adsorption energies less exergonic by +12 meV median (0 to +79 meV;
+   largest on TcN4-i, +41 meV on FeN4-i at 0 V), from the exact per-calc D3 energy corrections `dE_final` in research
+   `NO3_ads_gen/anl/d3_c6_fix_impact/summary.csv` (57 of the 58 configurations used need only that energy
+   correction; CoN4-i at 0 V would need re-optimization). Energies from the same production builds are consistent
+   with these; a fixed build or another code would differ by about this much.
 6. **pH.** The fit is at standard state, so the corrections do not depend on pH: only H2O gets an activity there
    (55.5 M); H3O+ and the anions are at 1 M. pH enters the steps only through kT ln 10^-pH for H3O+.
 7. **Temperature.** The cache is at 300 K, the experimental pKa's are at 298.15 K. In the acid links the DFT dG is
