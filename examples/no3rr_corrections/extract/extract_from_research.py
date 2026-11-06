@@ -50,13 +50,16 @@ ENFORCED_TAGS = ["elec"]
 BIASES = ["0V", "n1p0V"]
 
 EXAMPLE_SURF = "FeN4-i"
-EXAMPLE_ADS = ["NO3", "NO3H", "O", "OH", "NO2", "H"]
+EXAMPLE_ADS = ["NO3", "NO3H", "O", "OH", "NO2", "H", "NO2H", "NO", "NOH", "NHO", "NHOH", "N", "NH", "NH2", "NH3"]
 
-# cvtypecorr species name -> molecule name in the cache (mols/<name>/ in the calc tree)
+# cvtypecorr species name -> molecule name in the cache (mols/<name>/ in the calc tree). "X(g)" is the gas-phase twin
+# of a species the chain corrects through a gas-phase reaction.
 MOLECULES = {
     "H2": "H2_gas", "H2O": "H2O", "H3O+": "H3O_p1", "OH-": "OH_n1",
     "NO3H": "NO3H", "NO3-": "NO3_n1", "NO2H": "NO2H", "NO2-": "NO2_n1",
     "NO": "NO_gas", "NH3": "NH3", "NH4+": "NH4_p1",
+    "NHO": "NHO", "NH2O": "NH2O", "NH2OH": "NH2OH",
+    **{f"{s}(g)": f"{s}_gas" for s in ["NH3", "NH2", "NH", "N", "NHO", "NOH", "NH2O", "NHOH", "NH2OH", "NH3O"]},
 }
 
 # Example steps: (initial state, final state) keys of intermediate_next_step_map in no3rr_pathway_map.py
@@ -64,6 +67,8 @@ EXAMPLE_STEPS = [
     ("*", "NO3"), ("*", "O"), ("*", "NO2"), ("*", "H"),
     ("NO3", "NO3H"), ("NO3", "O"), ("NO3H", "NO2"),
     ("O", "OH"), ("OH", "*"), ("H", "*"),
+    ("NO2", "NO2H"), ("NO2H", "NO"), ("NO", "NHO"), ("NO", "NOH"), ("NHO", "NHOH"), ("NHOH", "NH"),
+    ("N", "NH"), ("NH", "NH2"), ("NH2", "NH3"),
 ]
 
 
@@ -221,6 +226,7 @@ def main():
             "extracted": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "research_commit": git_head(RESEARCH),
             "research_files_unmodified_at_commit": git_is_clean(RESEARCH, code_files),
+            "research_file_sha1": {f: sha1(RESEARCH / f) for f in code_files},
             "energy_cache": "research:NO3_ads_gen/anl/mnc/data.json",
             "energy_cache_sha1": sha1(CACHE_DIR / "data.json"),
             "labels": str(LABEL_FILE).replace(str(Path.home()), "~"),

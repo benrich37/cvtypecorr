@@ -1,5 +1,5 @@
 {
- "_about": "Species corrections (eV), added to the DFT free energy of each species. Written by fit_corrections.py; 'fit' lists the reaction, the experimental value and the DFT value of each link.",
+ "_about": "Species corrections (eV), added to the DFT free energy of each species. Written by fit_corrections.py; 'fit' lists the reaction, the experimental value and the DFT value of each link, 'closure_checks' couples not used in the fit.",
  "corrections": {
   "H2": 0.0,
   "H2O": 0.0,
@@ -13,17 +13,17 @@
   "OH-": -0.5273837742008931,
   "NH3": 0.07569324023051194,
   "NH4+": 0.97468772285621,
+  "NHO": -0.3936236744278061,
+  "NH2O": 0.11968574680963484,
+  "NH2OH": 0.008630515767979352,
+  "NH2": -0.15817533534610084,
+  "NH": -0.4138935452961372,
+  "N": -0.782012492527022,
+  "NOH": -0.2554394690785191,
+  "NHOH": -0.015182213141369971,
+  "NH3O": 0.19300203031435914,
   "O": 0.0,
-  "H": 0.0,
-  "N": 0.0,
-  "NH": 0.0,
-  "NH2": 0.0,
-  "NOH": 0.0,
-  "NHO": 0.0,
-  "NH2O": 0.0,
-  "NH3O": 0.0,
-  "NHOH": 0.0,
-  "NH2OH": 0.0
+  "H": 0.0
  },
  "v0_SHE_eV": 4.66,
  "fit": [
@@ -98,6 +98,121 @@
    "dft": 19.509611177539767,
    "unit": "pKa",
    "correction": 0.97468772285621
+  },
+  {
+   "species": "NHO",
+   "reaction": "NH3 + H2O -> NHO + 2 H2",
+   "kind": "formation",
+   "exp": 3.939490594392911,
+   "dft": 4.408807509051229,
+   "unit": "eV dG",
+   "correction": -0.3936236744278061
+  },
+  {
+   "species": "NH2O",
+   "reaction": "NH3 + H2O -> NH2O + 1.5 H2",
+   "kind": "formation",
+   "exp": 3.416375602425248,
+   "dft": 3.372383095846125,
+   "unit": "eV dG",
+   "correction": 0.11968574680963484
+  },
+  {
+   "species": "NH2OH",
+   "reaction": "NH2O + e- + H3O+ -> NH2OH + H2O",
+   "kind": "redox",
+   "exp": 0.9,
+   "dft": 0.49749380511147123,
+   "unit": "V_SHE",
+   "correction": 0.008630515767979352
+  },
+  {
+   "species": "NH2",
+   "reaction": "NH3 -> NH2 + 0.5 H2",
+   "kind": "gas",
+   "exp": 2.400228014717314,
+   "dft": 2.6340965902939266,
+   "unit": "eV dH(g)",
+   "correction": -0.15817533534610084
+  },
+  {
+   "species": "NH",
+   "reaction": "NH3 -> NH + H2",
+   "kind": "gas",
+   "exp": 4.190869047002125,
+   "dft": 4.680455832528774,
+   "unit": "eV dH(g)",
+   "correction": -0.4138935452961372
+  },
+  {
+   "species": "N",
+   "reaction": "NH3 -> N + 1.5 H2",
+   "kind": "gas",
+   "exp": 5.368720526506711,
+   "dft": 6.226426259264245,
+   "unit": "eV dH(g)",
+   "correction": -0.782012492527022
+  },
+  {
+   "species": "NOH",
+   "reaction": "NHO -> NOH",
+   "kind": "gas",
+   "exp": 1.1210032647561798,
+   "dft": 0.9828190594068928,
+   "unit": "eV dH(g)",
+   "correction": -0.2554394690785191
+  },
+  {
+   "species": "NHOH",
+   "reaction": "NH2O -> NHOH",
+   "kind": "gas",
+   "exp": 0.31486759599937825,
+   "dft": 0.44973555595038306,
+   "unit": "eV dH(g)",
+   "correction": -0.015182213141369971
+  },
+  {
+   "species": "NH3O",
+   "reaction": "NH2OH -> NH3O",
+   "kind": "gas",
+   "exp": 1.0772658962533037,
+   "dft": 0.8928943817069239,
+   "unit": "eV dH(g)",
+   "correction": 0.19300203031435914
+  }
+ ],
+ "closure_checks": [
+  {
+   "couple": "HNO,H+/H2NO",
+   "reaction": "NHO + H3O+ + e- -> NH2O + H2O",
+   "exp_V": 0.52,
+   "corrected_V": 0.5231149919676135,
+   "raw_V": 0.7449734493581808,
+   "source": "Armstrong 2015 [D]"
+  },
+  {
+   "couple": "NO3-/NO2-",
+   "reaction": "NO3- + 2 H3O+ + 2 e- -> NO2- + 3 H2O",
+   "exp_V": 0.832,
+   "corrected_V": 0.8441639447167777,
+   "raw_V": 0.42580305788007067,
+   "source": "from NBS dfG [D]"
+  },
+  {
+   "couple": "NO2-/NH4+",
+   "reaction": "NO2- + 8 H3O+ + 6 e- -> NH4+ + 10 H2O",
+   "exp_V": 0.901,
+   "corrected_V": 0.884298995380548,
+   "raw_V": 0.736640179343194,
+   "source": "from NBS dfG [D]"
+  },
+  {
+   "couple": "NO3-/NH4+",
+   "reaction": "NO3- + 10 H3O+ + 8 e- -> NH4+ + 13 H2O",
+   "exp_V": 0.884,
+   "corrected_V": 0.8742652327145208,
+   "raw_V": 0.6589308989773279,
+   "source": "from NBS dfG [D]"
   }
  ],
  "grounded_at_zero": [
@@ -105,17 +220,8 @@
   "H2O",
   "NO3H"
  ],
- "placeholder_zero": [
+ "zero_no_molecular_analog": [
   "O",
-  "H",
-  "N",
-  "NH",
-  "NH2",
-  "NOH",
-  "NHO",
-  "NH2O",
-  "NH3O",
-  "NHOH",
-  "NH2OH"
+  "H"
  ]
 }

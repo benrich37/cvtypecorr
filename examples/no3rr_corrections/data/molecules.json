@@ -627,6 +627,738 @@
     "N-sp": 8.0,
     "N0-sp": 9
    }
+  },
+  {
+   "species": "NHO",
+   "name": "NHO",
+   "calc_dir": "mols/NHO",
+   "out_file": {
+    "size": 115185,
+    "mtime": "2026-10-21T01:01:44+00:00"
+   },
+   "vib_out_file": {
+    "size": 162377,
+    "mtime": "2026-10-22T00:01:22+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NHO"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.36800847207110515,
+     "vib-rrho": 0.3680120176904116,
+     "trans-madhoc": 0.0387779996796533,
+     "rot-madhoc": 0.0387779996796533,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": -0.00027605159913931176,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -722.3468924411961,
+     "elec": -722.3468924411961,
+     "ssc": -0.00027605159913931176,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.0003606517073932986,
+     "vib-rrho": 0.0003607671881444177,
+     "trans-madhoc": 0.3255663590843574,
+     "rot-madhoc": 0.19245368449062963,
+     "trans-std-madhoc": 0.0015723397973298866,
+     "rot-std-madhoc": 0.0007173369232983545,
+     "ssc-madhoc": 0,
+     "elec-sp": 1.5368990951729837e-11,
+     "elec": 1.5368990951729837e-11,
+     "trans": 0.3255663590843574,
+     "rot": 0.19245368449062963,
+     "trans-std": 0.47170193919896597,
+     "rot-std": 0.21520107698950636
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 12.0,
+    "N0": 12,
+    "N-sp": 12.0,
+    "N0-sp": 12
+   }
+  },
+  {
+   "species": "NH2O",
+   "name": "NH2O",
+   "calc_dir": "mols/NH2O",
+   "out_file": {
+    "size": 180908,
+    "mtime": "2026-10-15T22:00:46+00:00"
+   },
+   "vib_out_file": {
+    "size": 137582,
+    "mtime": "2026-10-22T01:11:53+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH2O"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.7131704390007664,
+     "vib-rrho": 0.7136248736007443,
+     "trans-madhoc": 0.0387779996796533,
+     "rot-madhoc": 0.0387779996796533,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": -0.00027605159913931176,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -739.4131161087045,
+     "elec": -739.4131161087045,
+     "ssc": -0.00027605159913931176,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.024311163892016333,
+     "vib-rrho": 0.024377099218222165,
+     "trans-madhoc": 0.32786939711128044,
+     "rot-madhoc": 0.18377770404798086,
+     "trans-std-madhoc": 0.0015764738600060988,
+     "rot-std-madhoc": 0.0007028709213175187,
+     "ssc-madhoc": 0,
+     "elec-sp": 8.163415873794177e-15,
+     "elec": 8.163415873794177e-15,
+     "trans": 0.32786939711128044,
+     "rot": 0.18377770404798086,
+     "trans-std": 0.47294215800182965,
+     "rot-std": 0.2108612763952556
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 13.0,
+    "N0": 13,
+    "N-sp": 13.0,
+    "N0-sp": 13
+   }
+  },
+  {
+   "species": "NH2OH",
+   "name": "NH2OH",
+   "calc_dir": "mols/NH2OH",
+   "out_file": {
+    "size": 307545,
+    "mtime": "2026-10-16T03:07:28+00:00"
+   },
+   "vib_out_file": {
+    "size": 152001,
+    "mtime": "2026-10-22T00:22:13+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH2OH"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 1.0747557506008805,
+     "vib-rrho": 1.0750877730012287,
+     "trans-madhoc": 0.0387779996796533,
+     "rot-madhoc": 0.0387779996796533,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": -0.00027605159913931176,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -756.1973310289435,
+     "elec": -756.1973310289435,
+     "ssc": -0.00027605159913931176,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.02466948376961809,
+     "vib-rrho": 0.024694693998442062,
+     "trans-madhoc": 0.3304159164810632,
+     "rot-madhoc": 0.20938734526966368,
+     "trans-std-madhoc": 0.0015804797922247642,
+     "rot-std-madhoc": 0.0008064924945274195,
+     "ssc-madhoc": 0,
+     "elec-sp": 2.721138624598059e-15,
+     "elec": 2.721138624598059e-15,
+     "trans": 0.3304159164810632,
+     "rot": 0.20938734526966368,
+     "trans-std": 0.47414393766742924,
+     "rot-std": 0.24194774835822583
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 14.0,
+    "N0": 14,
+    "N-sp": 14.0,
+    "N0-sp": 14
+   }
+  },
+  {
+   "species": "NH3(g)",
+   "name": "NH3_gas",
+   "calc_dir": "mols/NH3_gas",
+   "out_file": {
+    "size": 36231,
+    "mtime": "2026-10-21T01:11:29+00:00"
+   },
+   "vib_out_file": {
+    "size": 61969,
+    "mtime": "2026-10-22T00:12:06+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH3_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.9150191729601225,
+     "vib-rrho": 0.9150270933287644,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -320.2073830109607,
+     "elec": -320.2073830109607,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.001407272574194407,
+     "vib-rrho": 0.0014072678329370954,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0014948570914118584,
+     "rot-std-madhoc": 0.0005003300902592797,
+     "ssc-madhoc": 0,
+     "elec-sp": 2.721138624598059e-15,
+     "elec": 2.721138624598059e-15,
+     "trans": 0.44845712742355753,
+     "rot": 0.1500990270777839,
+     "trans-std": 0.44845712742355753,
+     "rot-std": 0.1500990270777839
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 8.0,
+    "N0": 8,
+    "N-sp": 8.0,
+    "N0-sp": 8
+   }
+  },
+  {
+   "species": "NH2(g)",
+   "name": "NH2_gas",
+   "calc_dir": "mols/NH2_gas",
+   "out_file": {
+    "size": 38844,
+    "mtime": "2026-10-15T22:41:39+00:00"
+   },
+   "vib_out_file": {
+    "size": 50007,
+    "mtime": "2026-10-22T02:03:20+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH2_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.5078645032049821,
+     "vib-rrho": 0.5078664488363409,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -301.7662188670558,
+     "elec": -301.7662188670558,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.0001711593241307411,
+     "vib-rrho": 0.0001712316003458761,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0014869711907792573,
+     "rot-std-madhoc": 0.00047572694875197005,
+     "ssc-madhoc": 0,
+     "elec-sp": 0.0,
+     "elec": 0.0,
+     "trans": 0.4460913572337772,
+     "rot": 0.14271808462559102,
+     "trans-std": 0.4460913572337772,
+     "rot-std": 0.14271808462559102
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 7.0,
+    "N0": 7,
+    "N-sp": 7.0,
+    "N0-sp": 7
+   }
+  },
+  {
+   "species": "NH(g)",
+   "name": "NH_gas",
+   "calc_dir": "mols/NH_gas",
+   "out_file": {
+    "size": 33245,
+    "mtime": "2026-10-16T03:17:55+00:00"
+   },
+   "vib_out_file": {
+    "size": 38372,
+    "mtime": "2026-10-21T21:43:39+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.1996784427536479,
+     "vib-rrho": 0.19967861624830657,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.025851999786435535,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.025851999786435535,
+     "elec-sp": -283.89986607131664,
+     "elec": -283.89986607131664,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.025851999786435535
+    },
+    "TS": {
+     "vib": 7.163230217872668e-08,
+     "vib-rrho": 8.311874991303741e-08,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0014785727482642865,
+     "rot-std-madhoc": 0.00030697977421828836,
+     "ssc-madhoc": 0,
+     "elec-sp": 0.0,
+     "elec": 0.0,
+     "trans": 0.44357182447928595,
+     "rot": 0.09209393226548651,
+     "trans-std": 0.44357182447928595,
+     "rot-std": 0.09209393226548651
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 6.0,
+    "N0": 6,
+    "N-sp": 6.0,
+    "N0-sp": 6
+   }
+  },
+  {
+   "species": "N(g)",
+   "name": "N_gas",
+   "calc_dir": "mols/N_gas",
+   "out_file": {
+    "size": 19784,
+    "mtime": "2026-10-16T03:24:49+00:00"
+   },
+   "vib_out_file": {
+    "size": 23612,
+    "mtime": "2026-10-22T02:04:34+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "N_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.0,
+     "vib-rrho": 0.0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0,
+     "elec-sp": -266.52097609118374,
+     "elec": -266.52097609118374,
+     "ssc": 0
+    },
+    "TS": {
+     "vib": 0.0,
+     "vib-rrho": 0.0,
+     "trans": 0.4408771436641121,
+     "rot": 0.0,
+     "trans-std": 0.4408771436641121,
+     "rot-std": 0.0,
+     "elec-sp": 0.0,
+     "elec": 0.0
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": false,
+    "N": 5.0,
+    "N0": 5,
+    "N-sp": 5.0,
+    "N0-sp": 5,
+    "note": "atom: built by cache_molecules_subset.atom_entry (rot = vib = 0)"
+   }
+  },
+  {
+   "species": "NHO(g)",
+   "name": "NHO_gas",
+   "calc_dir": "mols/NHO_gas",
+   "out_file": {
+    "size": 69792,
+    "mtime": "2026-10-15T22:41:56+00:00"
+   },
+   "vib_out_file": {
+    "size": 74316,
+    "mtime": "2026-10-22T01:22:17+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NHO_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.3542126184195154,
+     "vib-rrho": 0.3542161943890625,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -722.2282066635915,
+     "elec": -722.2282066635915,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.00035381607041600605,
+     "vib-rrho": 0.00035393579876695177,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0015723397973298866,
+     "rot-std-madhoc": 0.0007179589454783291,
+     "ssc-madhoc": 0,
+     "elec-sp": 2.0743239735311006e-11,
+     "elec": 2.0743239735311006e-11,
+     "trans": 0.47170193919896597,
+     "rot": 0.21538768364349872,
+     "trans-std": 0.47170193919896597,
+     "rot-std": 0.21538768364349872
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 12.0,
+    "N0": 12,
+    "N-sp": 12.0,
+    "N0-sp": 12
+   }
+  },
+  {
+   "species": "NOH(g)",
+   "name": "NOH_gas",
+   "calc_dir": "mols/NOH_gas",
+   "out_file": {
+    "size": 61195,
+    "mtime": "2026-10-16T16:47:52+00:00"
+   },
+   "vib_out_file": {
+    "size": 58990,
+    "mtime": "2026-10-22T02:56:30+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NOH_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.36415805788827993,
+     "vib-rrho": 0.36416547380951947,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -721.2453876041847,
+     "elec": -721.2453876041847,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.0015539120063716274,
+     "vib-rrho": 0.0015538434129774288,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0015723397973298866,
+     "rot-std-madhoc": 0.0007254810633069513,
+     "ssc-madhoc": 0,
+     "elec-sp": 0.0,
+     "elec": 0.0,
+     "trans": 0.47170193919896597,
+     "rot": 0.2176443189920854,
+     "trans-std": 0.47170193919896597,
+     "rot-std": 0.2176443189920854
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 12.0,
+    "N0": 12,
+    "N-sp": 12.0,
+    "N0-sp": 12
+   }
+  },
+  {
+   "species": "NH2O(g)",
+   "name": "NH2O_gas",
+   "calc_dir": "mols/NH2O_gas",
+   "out_file": {
+    "size": 70837,
+    "mtime": "2026-10-23T22:46:07+00:00"
+   },
+   "vib_out_file": {
+    "size": 74435,
+    "mtime": "2026-10-23T23:08:41+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH2O_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.7082398299870911,
+     "vib-rrho": 0.7086132579771455,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -739.0063643207596,
+     "elec": -739.0063643207596,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.02310242776164051,
+     "vib-rrho": 0.023034799871234458,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0015764738600060988,
+     "rot-std-madhoc": 0.000701803929231456,
+     "ssc-madhoc": 0,
+     "elec-sp": 5.442277249196118e-15,
+     "elec": 5.442277249196118e-15,
+     "trans": 0.47294215800182965,
+     "rot": 0.2105411787694368,
+     "trans-std": 0.47294215800182965,
+     "rot-std": 0.2105411787694368
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 13.0,
+    "N0": 13,
+    "N-sp": 13.0,
+    "N0-sp": 13
+   }
+  },
+  {
+   "species": "NHOH(g)",
+   "name": "NHOH_gas",
+   "calc_dir": "mols/NHOH_gas",
+   "out_file": {
+    "size": 62082,
+    "mtime": "2026-10-16T15:36:53+00:00"
+   },
+   "vib_out_file": {
+    "size": 71781,
+    "mtime": "2026-10-22T02:49:28+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NHOH_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 0.718285769510389,
+     "vib-rrho": 0.7183102439253313,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -738.5566287648093,
+     "elec": -738.5566287648093,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.006099485908783145,
+     "vib-rrho": 0.006097867538361789,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0015764738600060988,
+     "rot-std-madhoc": 0.0007722388112224935,
+     "ssc-madhoc": 0,
+     "elec-sp": 0.0,
+     "elec": 0.0,
+     "trans": 0.47294215800182965,
+     "rot": 0.23167164336674806,
+     "trans-std": 0.47294215800182965,
+     "rot-std": 0.23167164336674806
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 13.0,
+    "N0": 13,
+    "N-sp": 13.0,
+    "N0-sp": 13
+   }
+  },
+  {
+   "species": "NH2OH(g)",
+   "name": "NH2OH_gas",
+   "calc_dir": "mols/NH2OH_gas",
+   "out_file": {
+    "size": 52851,
+    "mtime": "2026-10-16T16:47:49+00:00"
+   },
+   "vib_out_file": {
+    "size": 83285,
+    "mtime": "2026-10-22T01:33:14+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH2OH_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 1.0803486753184357,
+     "vib-rrho": 1.0804428155310721,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -755.8836255750784,
+     "elec": -755.8836255750784,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.016082620236346105,
+     "vib-rrho": 0.016074783174267658,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0015804797922247642,
+     "rot-std-madhoc": 0.0008062608671035942,
+     "ssc-madhoc": 0,
+     "elec-sp": 2.721138624598059e-15,
+     "elec": 2.721138624598059e-15,
+     "trans": 0.47414393766742924,
+     "rot": 0.24187826013107824,
+     "trans-std": 0.47414393766742924,
+     "rot-std": 0.24187826013107824
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 14.0,
+    "N0": 14,
+    "N-sp": 14.0,
+    "N0-sp": 14
+   }
+  },
+  {
+   "species": "NH3O(g)",
+   "name": "NH3O_gas",
+   "calc_dir": "mols/NH3O_gas",
+   "out_file": {
+    "size": 62912,
+    "mtime": "2026-10-16T15:37:05+00:00"
+   },
+   "vib_out_file": {
+    "size": 89318,
+    "mtime": "2026-10-22T02:40:03+00:00"
+   },
+   "cache_key": [
+    "molecules",
+    "NH3O_gas"
+   ],
+   "cache_entry": {
+    "E": {
+     "vib": 1.0599148441267687,
+     "vib-rrho": 1.059932085291904,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0387779996796533,
+     "rot-std-madhoc": 0.0387779996796533,
+     "ssc-madhoc": 0,
+     "trans": 0.0387779996796533,
+     "rot": 0.0387779996796533,
+     "elec-sp": -754.9907311933715,
+     "elec": -754.9907311933715,
+     "ssc": 0,
+     "trans-std": 0.0387779996796533,
+     "rot-std": 0.0387779996796533
+    },
+    "TS": {
+     "vib": 0.0031790260118540023,
+     "vib-rrho": 0.0031790047374576987,
+     "trans-madhoc": 0,
+     "rot-madhoc": 0,
+     "trans-std-madhoc": 0.0015804797922247642,
+     "rot-std-madhoc": 0.0007052240248871383,
+     "ssc-madhoc": 0,
+     "elec-sp": 2.721138624598059e-15,
+     "elec": 2.721138624598059e-15,
+     "trans": 0.47414393766742924,
+     "rot": 0.2115672074661415,
+     "trans-std": 0.47414393766742924,
+     "rot-std": 0.2115672074661415
+    },
+    "has_imaginary_freqs": false,
+    "im_freqs": [],
+    "uses_mol_sets": true,
+    "N": 14.0,
+    "N0": 14,
+    "N-sp": 14.0,
+    "N0-sp": 14
+   }
   }
  ]
 }

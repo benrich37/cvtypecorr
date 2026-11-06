@@ -36,10 +36,15 @@ TAGS = tuple(SETTINGS["energy_tags"])
 MU = SETTINGS["mu_eV"]
 V0 = SETTINGS["v0_SHE_eV"]
 
-# Correction label of each adsorbate: the free species whose DFT error it is taken to share. Steps that only move a
-# species between solution and surface (e.g. * + NO3- -> *NO3) therefore get no correction. Labels O and H are
-# placeholders with correction exactly 0 (see README).
-ADSORBATE_LABEL = {"NO3": "NO3-", "NO2": "NO2-", "OH": "OH-", "O": "O", "H": "H", "NO3H": "NO3H"}
+# Correction label of an adsorbate: the free species whose DFT error it is taken to share. *NO3, *NO2 and *OH carry
+# the anion's correction, every other adsorbate its own name's (*NO -> NO, *NHO -> NHO, ...). Steps that only move a
+# species between solution and surface (e.g. * + NO3- -> *NO3) therefore get no correction. O and H have no
+# molecular analog and a correction of exactly 0.
+ANION_LABELS = {"NO3": "NO3-", "NO2": "NO2-", "OH": "OH-"}
+
+
+def adsorbate_label(ads: str) -> str | None:
+    return None if ads == "*" else ANION_LABELS.get(ads, ads)
 
 
 def grand_free_energy(entry: dict, mu: float, tags=TAGS) -> float:
@@ -68,7 +73,7 @@ def configs(surf: str, ads: str, bias: str) -> list[dict]:
 
 
 def lowest(surf: str, ads: str, bias: str) -> tuple[float, dict]:
-    """(G, record) of the lowest-G configuration of `ads` on `surf` at `bias`."""
+    """(G, record) of the lowest-G configuration of `ads` on `surf` at `bias`; LookupError if there is none."""
     found = [(grand_free_energy(r["cache_entry"], MU[bias]), r) for r in configs(surf, ads, bias)]
     found = [(G, r) for G, r in found if math.isfinite(G)]
     if not found:
@@ -82,15 +87,18 @@ def step_energy(reactants, products, surf: str, bias: str, corrections: dict, co
     reactants/products: [(species, coefficient)], where "*X" is adsorbate X on `surf` ("*" the clean slab) and any
     other name is a free molecule (cvtypecorr name, e.g. "NO3-", "H3O+"). conc: {free species: concentration in M}.
     The correction is sum(products) - sum(reactants) of each species' correction label, i.e. what
-    cvtypecorr's Collection._get_reaction_correction computes.
+    cvtypecorr's Collection._get_reaction_correction computes. "used" maps each adsorbed state to its record. dG is
+    NaN when a state has no configuration at this bias, as in the research code.
     """
     dG, corr, terms, used = 0.0, 0.0, [], {}
     for sign, side in ((-1, reactants), (+1, products)):
         for species, n in side:
             if species.startswith("*"):
-                G, rec = lowest(surf, species[1:] or "*", bias)
-                used[species] = rec["calc_dir"]
-                label = ADSORBATE_LABEL.get(species[1:])
+                try:
+                    G, used[species] = lowest(surf, species[1:] or "*", bias)
+                except LookupError:
+                    G, used[species] = math.nan, None
+                label = adsorbate_label(species[1:] or "*")
             else:
                 G = molecule_G(species, bias, conc.get(species))
                 label = species

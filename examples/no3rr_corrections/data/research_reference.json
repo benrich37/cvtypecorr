@@ -13,17 +13,17 @@
   "OH-": -0.5273837742008931,
   "NH3": 0.07569324023039892,
   "NH4+": 0.974687722856097,
+  "NHO": -0.39362367442794755,
+  "NH2O": 0.11968574680955735,
+  "NH2OH": 0.008630515767901858,
+  "NH2": -0.15817533534621386,
+  "NH": -0.4138935452962502,
+  "N": -0.782012492527135,
+  "NOH": -0.25543946907866055,
+  "NHOH": -0.015182213141447465,
+  "NH3O": 0.19300203031428165,
   "O": 0.0,
-  "H": 0.0,
-  "N": 0.0,
-  "NH": 0.0,
-  "NH2": 0.0,
-  "NOH": 0.0,
-  "NHO": 0.0,
-  "NH2O": 0.0,
-  "NH3O": 0.0,
-  "NHOH": 0.0,
-  "NH2OH": 0.0
+  "H": 0.0
  },
  "steps": {
   "surf": "FeN4-i",
@@ -247,6 +247,204 @@
      "clean"
     ],
     "step_map_func": "lambda surf, cna, bias: get_h_to_h2_nrg(cna, surf, bias, pH=pH, rct_tuples=[(\"H\", 1)], pdt_tuples=[])"
+   },
+   {
+    "step": "NO2 -> NO2H",
+    "bias": "0V",
+    "dG_raw": 0.3293194614452659,
+    "dG_corrected": 0.3019473677099196,
+    "configs_returned": [
+     "from_no2_out_metal_mono_N_atop_upright_gau_with_OH_low",
+     "in_mono_metal_atop"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO2\", \"NO2H\", pH=pH, rct_tuples=[(\"NO2-\", 1)], pdt_tuples=[(\"NO2H\", 1)])"
+   },
+   {
+    "step": "NO2 -> NO2H",
+    "bias": "n1p0V",
+    "dG_raw": -0.05874087558731844,
+    "dG_corrected": -0.08611296932266477,
+    "configs_returned": [
+     "from_no2_out_metal_mono_N_atop_upright_gau_with_OH_low",
+     "in_mono_metal_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO2\", \"NO2H\", pH=pH, rct_tuples=[(\"NO2-\", 1)], pdt_tuples=[(\"NO2H\", 1)])"
+   },
+   {
+    "step": "NO2H -> NO",
+    "bias": "0V",
+    "dG_raw": -1.1937374242661463,
+    "dG_corrected": -1.8520500281024912,
+    "configs_returned": [
+     "in_bridge_metal_ecl",
+     "from_no2_out_metal_mono_N_atop_upright_gau_with_OH_low"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_dehyd_nrg(cna, surf, bias, \"NO2H\", \"NO\", pH=pH, rct_tuples=[(\"NO2H\", 1)], pdt_tuples=[(\"NO\", 1), (\"H2O\", 1)])"
+   },
+   {
+    "step": "NO2H -> NO",
+    "bias": "n1p0V",
+    "dG_raw": -1.8267877714188216,
+    "dG_corrected": -2.4851003752551666,
+    "configs_returned": [
+     "in_n_mono_metal_ecl_resub",
+     "from_no2_out_metal_mono_N_atop_upright_gau_with_OH_low"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_dehyd_nrg(cna, surf, bias, \"NO2H\", \"NO\", pH=pH, rct_tuples=[(\"NO2H\", 1)], pdt_tuples=[(\"NO\", 1), (\"H2O\", 1)])"
+   },
+   {
+    "step": "NO -> NHO",
+    "bias": "0V",
+    "dG_raw": 0.8488888966512604,
+    "dG_corrected": 0.7375641199491484,
+    "configs_returned": [
+     "from_no_out_metal_mono_N_atop_vertical_with_NH_up_resub",
+     "in_bridge_metal_ecl"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO\", \"NHO\", pH=pH, rct_tuples=[(\"NO\", 1)], pdt_tuples=[(\"NHO\", 1)])"
+   },
+   {
+    "step": "NO -> NHO",
+    "bias": "n1p0V",
+    "dG_raw": -0.36884383954929945,
+    "dG_corrected": -0.4801686162514115,
+    "configs_returned": [
+     "from_no_out_metal_mono_N_atop_vertical_with_NH_out",
+     "in_n_mono_metal_ecl_resub"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO\", \"NHO\", pH=pH, rct_tuples=[(\"NO\", 1)], pdt_tuples=[(\"NHO\", 1)])"
+   },
+   {
+    "step": "NO -> NOH",
+    "bias": "0V",
+    "dG_raw": null,
+    "dG_corrected": null,
+    "configs_returned": [
+     null,
+     null
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO\", \"NOH\", pH=pH, rct_tuples=[(\"NO\", 1)], pdt_tuples=[(\"NOH\", 1)])"
+   },
+   {
+    "step": "NO -> NOH",
+    "bias": "n1p0V",
+    "dG_raw": 0.274804313072309,
+    "dG_corrected": 0.30166374171948396,
+    "configs_returned": [
+     "from_no_out_metal_mono_N_atop_vertical_with_OH_out",
+     "in_n_mono_metal_ecl_resub"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NO\", \"NOH\", pH=pH, rct_tuples=[(\"NO\", 1)], pdt_tuples=[(\"NOH\", 1)])"
+   },
+   {
+    "step": "NHO -> NHOH",
+    "bias": "0V",
+    "dG_raw": 0.732869206880423,
+    "dG_corrected": 0.8198597043200495,
+    "configs_returned": [
+     "from_NHO_from_no_out_metal_mono_N_atop_vertical_with_NH_up_resub",
+     "from_no_out_metal_mono_N_atop_vertical_with_NH_up_resub"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NHO\", \"NHOH\", pH=pH, rct_tuples=[(\"NHO\", 1)], pdt_tuples=[(\"NHOH\", 1)])"
+   },
+   {
+    "step": "NHO -> NHOH",
+    "bias": "n1p0V",
+    "dG_raw": -0.132084211185429,
+    "dG_corrected": -0.045093713745802566,
+    "configs_returned": [
+     "from_NHO_from_no_out_metal_mono_N_atop_vertical_with_NH_out",
+     "from_no_out_metal_mono_N_atop_vertical_with_NH_out"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NHO\", \"NHOH\", pH=pH, rct_tuples=[(\"NHO\", 1)], pdt_tuples=[(\"NHOH\", 1)])"
+   },
+   {
+    "step": "NHOH -> NH",
+    "bias": "0V",
+    "dG_raw": 0.07514645274932263,
+    "dG_corrected": -0.6150158432523538,
+    "configs_returned": [
+     "in_metal_atop_vert",
+     "from_NHO_from_no_out_metal_mono_N_atop_vertical_with_NH_up_resub"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_dehyd_nrg(cna, surf, bias, \"NHOH\", \"NH\", pH=pH, rct_tuples=[(\"NHOH\", 1)], pdt_tuples=[(\"NH\", 1), (\"H2O\", 1)])"
+   },
+   {
+    "step": "NHOH -> NH",
+    "bias": "n1p0V",
+    "dG_raw": -1.1792727324864245,
+    "dG_corrected": -1.869435028488101,
+    "configs_returned": [
+     "in_metal_atop_bent",
+     "from_NHO_from_no_out_metal_mono_N_atop_vertical_with_NH_out"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_dehyd_nrg(cna, surf, bias, \"NHOH\", \"NH\", pH=pH, rct_tuples=[(\"NHOH\", 1)], pdt_tuples=[(\"NH\", 1), (\"H2O\", 1)])"
+   },
+   {
+    "step": "N -> NH",
+    "bias": "0V",
+    "dG_raw": 0.11217014039903006,
+    "dG_corrected": 0.1888381237830412,
+    "configs_returned": [
+     "in_metal_atop_vert",
+     "in_metal_atop"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"N\", \"NH\", pH=pH, rct_tuples=[(\"N\", 1)], pdt_tuples=[(\"NH\", 1)])"
+   },
+   {
+    "step": "N -> NH",
+    "bias": "n1p0V",
+    "dG_raw": -1.070901888433582,
+    "dG_corrected": -0.9942339050495708,
+    "configs_returned": [
+     "in_metal_atop_bent",
+     "in_metal_atop"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"N\", \"NH\", pH=pH, rct_tuples=[(\"N\", 1)], pdt_tuples=[(\"NH\", 1)])"
+   },
+   {
+    "step": "NH -> NH2",
+    "bias": "0V",
+    "dG_raw": -0.850477067691827,
+    "dG_corrected": -0.8862098215886642,
+    "configs_returned": [
+     "in_metal_atop",
+     "in_metal_atop_vert"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NH\", \"NH2\", pH=pH, rct_tuples=[(\"NH\", 1)], pdt_tuples=[(\"NH2\", 1)])"
+   },
+   {
+    "step": "NH -> NH2",
+    "bias": "n1p0V",
+    "dG_raw": -1.7381602791992918,
+    "dG_corrected": -1.7738930330961291,
+    "configs_returned": [
+     "in_metal_atop",
+     "in_metal_atop_bent"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NH\", \"NH2\", pH=pH, rct_tuples=[(\"NH\", 1)], pdt_tuples=[(\"NH2\", 1)])"
+   },
+   {
+    "step": "NH2 -> NH3",
+    "bias": "0V",
+    "dG_raw": -0.7685839015866804,
+    "dG_corrected": -0.8261662898569413,
+    "configs_returned": [
+     "in_metal_atop",
+     "in_metal_atop"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NH2\", \"NH3\", pH=pH, rct_tuples=[(\"NH2\", 1)], pdt_tuples=[(\"NH3\", 1)])"
+   },
+   {
+    "step": "NH2 -> NH3",
+    "bias": "n1p0V",
+    "dG_raw": -1.2716501317700022,
+    "dG_corrected": -1.329232520040263,
+    "configs_returned": [
+     "in_metal_atop",
+     "in_metal_atop"
+    ],
+    "step_map_func": "lambda surf, cna, bias: get_generic_prot_nrg(cna, surf, bias, \"NH2\", \"NH3\", pH=pH, rct_tuples=[(\"NH2\", 1)], pdt_tuples=[(\"NH3\", 1)])"
    }
   ]
  },
